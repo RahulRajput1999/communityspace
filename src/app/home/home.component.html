@@ -1,0 +1,171 @@
+<!-- Main fluid container for the grid view -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- Column for the navigation panel -->
+    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 color_background text-white">
+      <br/>
+      <br/>
+      <!-- sticky-top class to prevent this column from scrolling, to make it sticky -->
+      <div class="sticky-top color_background" style="z-index: -0;">
+        <h3>Navigation</h3>
+        <!-- list of the navigation links -->
+        <mat-list role="list">
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+    </div>
+
+    <!-- Column for the main question holder container -->
+
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 bg-dark scrollit">
+      <div class="row">
+        <!-- Column for the title holder -->
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 color_background text-white">
+          <h5 class="display-4 font-weight-bold">Top Questions</h5>
+        </div>
+        <!-- Column for the ask question button -->
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 color_background text-center" style="padding-top: 20px">
+          <button mat-button class="color_accent">Ask Question</button>
+        </div>
+      </div>
+
+      <!-- ngFor loop to iterate on the array of question provided by the .ts file -->
+
+      <div *ngFor="let question of questions" class="row">
+        <!--Material design card-->
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title><h3>{{question.question}}</h3></mat-card-title>
+            <mat-card-subtitle>{{question.date}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{question.answer}}
+            </p>
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of question.tags">{{tag}}</mat-chip>
+            </mat-chip-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>
+              <mat-icon>thumb_up</mat-icon>
+            </button>
+            <button mat-button>
+              <mat-icon>thumb_down</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        <!-- Seperator division to provide space between two cards -->
+        <div class="seperator"></div>
+      </div>
+    </div>
+
+    <!-- Coluimn for the extra links container in right side -->
+
+    <div class="col-xl-2 col-lg-2 col-md col-sm-12 color_background text-white">
+      <br/>
+      <!-- sticky-top class to prevent this column from scrolling, to make it sticky -->
+      <div class="sticky-top" style="z-index: -0;">
+        <!-- class right border will provie the verticle line to seperate two column -->
+        <div class="right_border">
+          <h3>Welcome</h3>
+          <mat-divider></mat-divider>
+          <p>This is welcome message froom the Comunity Space team.</p>
+        </div>
+        <br/>
+        <div class="right_border">
+          <h3>Frequently Asked</h3>
+          <mat-divider></mat-divider>
+          <p>This all are the most frequently asked questions.</p>
+          <mat-list role="list">
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+              <button mat-button>Link 1</button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+              <button mat-button>Link 1</button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item role="listitem">
+              <button mat-button>Link 1</button>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer of the home component -->
+
+<footer class="page-footer font-small color_primary pt-4">
+  <div class="container-fluid text-center text-md-left">
+    <!-- Using bootstrap4 grid system for row and columns -->
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+        <!-- Container for the logo image -->
+        <div class="container">
+          <img class="img-fluid" src="assets/logo.png">
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident.</p>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Links</h5>
+        <mat-list role="list">
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Links</h5>
+        <mat-list role="list">
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item role="listitem">
+            <button mat-button>Link 1</button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright text-center py-3">© 2018 Copyright Community Space
+  </div>
+</footer>

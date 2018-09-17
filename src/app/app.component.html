@@ -1,0 +1,39 @@
+<!-- Main navigation toolbar of the application -->
+
+<nav class="navbar navbar-expand-lg navbar-dark color_primary">
+  <a class="navbar-brand" routerLink="/home" routerLinkActive="active">Community Space</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse collapse show" id="navb">
+    <!-- links for different components of the app module -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Account
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/login" routerLinkActive="active">Log-In</a>
+          <a class="dropdown-item" routerLink="/signup" routerLinkActive="active">Sign-Up</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Form for the search bar of the application -->
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button mat-button class="color_accent"><mat-icon>search</mat-icon></button>
+    </form>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+
