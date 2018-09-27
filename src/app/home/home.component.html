@@ -37,7 +37,7 @@
         </div>
         <!-- Column for the ask question button -->
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 color_background text-center" style="padding-top: 20px">
-          <button mat-button class="color_accent">Ask Question</button>
+          <button (click)="ask()" mat-button class="color_accent">Ask Question</button>
         </div>
       </div>
 
@@ -47,7 +47,7 @@
         <!--Material design card-->
         <mat-card class="example-card">
           <mat-card-header>
-            <mat-card-title><h3>{{question.question}}</h3></mat-card-title>
+            <mat-card-title><h3 class="customLink" (click)="redirect()">{{question.question}}</h3></mat-card-title>
             <mat-card-subtitle>{{question.date}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
@@ -55,7 +55,7 @@
               {{question.answer}}
             </p>
             <mat-chip-list>
-              <mat-chip *ngFor="let tag of question.tags">{{tag}}</mat-chip>
+              <mat-chip (click)="topics()" *ngFor="let tag of question.tags">{{tag}}</mat-chip>
             </mat-chip-list>
           </mat-card-content>
           <mat-card-actions>

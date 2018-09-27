@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 export interface Question {
   question: string;
@@ -14,8 +15,7 @@ export interface Question {
 })
 
 export class HomeComponent implements OnInit {
-
-  constructor() {
+  constructor(private router: Router) {
   }
 
   questions: Question[] = [
@@ -55,5 +55,16 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
+  }
+
+  topics() {
+    const promice = this.router.navigate(['topics']);
+  }
+  ask() {
+    const promice = this.router.navigate(['/home/ask']);
+  }
+
+  redirect() {
+    const promise = this.router.navigate(['/home/detail']);
   }
 }

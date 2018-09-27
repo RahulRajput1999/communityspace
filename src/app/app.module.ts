@@ -22,6 +22,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DetailComponent } from './home/detail/detail.component';
+import { AskComponent } from './home/ask/ask.component';
+import { SearchComponent } from './search/search.component';
+import { CommunitiesComponent } from './communities/communities.component';
+import { TopicsComponent } from './topics/topics.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,6 +37,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: '*', component: HomeComponent},
+  {path: 'home/detail', component: DetailComponent},
+  {path: 'home/ask', component: AskComponent},
+  {path: 'search', component: SearchComponent},
+  {path: 'communities', component: CommunitiesComponent},
+  {path: 'topics', component: TopicsComponent},
 ];
 
 @NgModule({
@@ -40,7 +51,12 @@ const routes: Routes = [
     AboutComponent,
     ContactComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    DetailComponent,
+    AskComponent,
+    SearchComponent,
+    CommunitiesComponent,
+    TopicsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +77,8 @@ const routes: Routes = [
     MatChipsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
