@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatIconModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatStepperModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
@@ -28,7 +28,6 @@ import { AskComponent } from './home/ask/ask.component';
 import { SearchComponent } from './search/search.component';
 import { CommunitiesComponent } from './communities/communities.component';
 import { TopicsComponent } from './topics/topics.component';
-
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
@@ -78,7 +77,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

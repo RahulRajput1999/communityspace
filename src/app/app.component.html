@@ -10,10 +10,10 @@
     <!-- links for different components of the app module -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+        <a class="nav-link" routerLink="communities" routerLinkActive="active">Communities</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
@@ -31,10 +31,40 @@
     <!-- Form for the search bar of the application -->
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button mat-button class="color_accent"><mat-icon>search</mat-icon></button>
+      <button routerLinkActive="active" routerLink="search" mat-button class="color_accent">
+        <mat-icon>search</mat-icon>
+      </button>
     </form>
   </div>
 </nav>
+<!--mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span routerLink="home" routerLinkActive="active" class="customLink title">CommunitySpace</span>
+    <span><button mat-button routerLinkActive="active" routerLink="communities">Communities</button></span>
+    <span><button mat-button routerLinkActive="active" routerLink="about">About</button></span>
+    <span><button mat-button routerLinkActive="active" routerLink="contact">Contact</button></span>
+    <span><button mat-button [matMenuTriggerFor]="account">Account</button>
+    <mat-menu #account="matMenu">
+      <button mat-menu-item routerLink="login" routerLinkActive="active">Log-In</button>
+      <button mat-menu-item routerLink="signup" routerLinkActive="active">sign-Up</button>
+    </mat-menu>
+  </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span routerLink="home" routerLinkActive="active" class="customLink title">CommunitySpace</span>
+    <span><button mat-button routerLinkActive="active" routerLink="communities">Communities</button></span>
+    <span><button mat-button routerLinkActive="active" routerLink="about">About</button></span>
+    <span><button mat-button routerLinkActive="active" routerLink="contact">Contact</button></span>
+    <span><button mat-button [matMenuTriggerFor]="account">Account</button>
+    <mat-menu #account="matMenu">
+      <button mat-menu-item routerLink="login" routerLinkActive="active">Log-In</button>
+      <button mat-menu-item routerLink="signup" routerLinkActive="active">sign-Up</button>
+    </mat-menu>
+  </span>
+  </mat-toolbar-row>
+</mat-toolbar-->
 <router-outlet></router-outlet>
 <!-- Footer of the app module -->
 
