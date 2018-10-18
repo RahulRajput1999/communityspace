@@ -29,6 +29,9 @@ import { SearchComponent } from './search/search.component';
 import { CommunitiesComponent } from './communities/communities.component';
 import { TopicsComponent } from './topics/topics.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {AuthenticateService} from './login/authenticate.service';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -73,6 +76,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatDividerModule,
     MatIconModule,
+    HttpClientModule,
     MatInputModule,
     MatCardModule,
     RouterModule.forRoot(routes),
@@ -81,9 +85,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatNativeDateModule,
     MatDialogModule,
-    MatStepperModule
+    MatStepperModule,
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [AuthenticateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

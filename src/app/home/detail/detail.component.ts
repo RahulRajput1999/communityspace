@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -7,10 +8,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() {
+  panelOpenState = false;
+
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
+  }
+
+  topics() {
+    const promice = this.router.navigate(['topics']);
   }
 
 }
