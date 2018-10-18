@@ -28,6 +28,8 @@ import { AskComponent } from './home/ask/ask.component';
 import { SearchComponent } from './search/search.component';
 import { CommunitiesComponent } from './communities/communities.component';
 import { TopicsComponent } from './topics/topics.component';
+import {MatSelectModule} from '@angular/material/select';
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
@@ -62,6 +64,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatSelectModule,
     MatToolbarModule,
     MatGridListModule,
     MatCheckboxModule,
