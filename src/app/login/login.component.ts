@@ -17,6 +17,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
 
+  msg: string;
   loginForm: FormGroup;
 
   matcher = new MyErrorStateMatcher();
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
       username: this.f.usernameFormControl.value,
       password: this.f.passwordFormControl.value
     }).subscribe(data => {
+      this.msg = data['msg'];
       console.log(data);
     });
   }
