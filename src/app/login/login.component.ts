@@ -43,7 +43,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.auth.authenticate({username: this.f.usernameFormControl.value, password: this.f.passwordFormControl.value}));
+    this.auth.authenticate({
+      username: this.f.usernameFormControl.value,
+      password: this.f.passwordFormControl.value
+    }).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
