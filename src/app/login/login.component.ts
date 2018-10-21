@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {ErrorStateMatcher} from '@angular/material';
 import {AuthenticateService} from './authenticate.service';
 import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthenticateService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    // private cookie: CookieService,
   ) {
   }
 
@@ -53,7 +55,8 @@ export class LoginComponent implements OnInit {
       this.msg = data['msg'];
       if (data['status']) {
         this.router.navigate(['/home']);
-        console.log(data['user']);
+        console.log('sess ' + data['sessionID']);
+        // this.cookie.set('sessionID', data['sessionID']);
       }
     });
   }

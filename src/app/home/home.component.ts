@@ -57,11 +57,6 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.getsession.getSession().subscribe(res => {
-      console.log(res.body);
-      console.log(res);
-      return res;
-    });
   }
 
   topics() {
