@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {AuthenticateService} from './authenticate.service';
+import {Router} from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
   }
 
@@ -49,7 +51,10 @@ export class LoginComponent implements OnInit {
       password: this.f.passwordFormControl.value
     }).subscribe(data => {
       this.msg = data['msg'];
-      console.log(data);
+      if (data['status']) {
+        this.router.navigate(['/home']);
+        console.log(data['user']);
+      }
     });
   }
 

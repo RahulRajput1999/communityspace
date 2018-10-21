@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {GetsessionService} from './getsession.service';
 
 export interface Question {
   question: string;
@@ -15,7 +16,8 @@ export interface Question {
 })
 
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private getsession: GetsessionService) {
   }
 
   questions: Question[] = [
@@ -55,11 +57,17 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.getsession.getSession().subscribe(res => {
+      console.log(res.body);
+      console.log(res);
+      return res;
+    });
   }
 
   topics() {
     const promice = this.router.navigate(['topics']);
   }
+
   ask() {
     const promice = this.router.navigate(['/home/ask']);
   }

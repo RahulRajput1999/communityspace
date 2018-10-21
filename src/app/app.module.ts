@@ -32,7 +32,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {AuthenticateService} from './login/authenticate.service';
 import {HttpClientModule} from '@angular/common/http';
-
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
@@ -86,7 +85,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatDialogModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   providers: [AuthenticateService],
   bootstrap: [AppComponent]
