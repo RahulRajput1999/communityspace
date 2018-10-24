@@ -32,6 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {AuthenticateService} from './login/authenticate.service';
 import {HttpClientModule} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
@@ -87,7 +89,7 @@ const routes: Routes = [
     MatStepperModule,
     MatExpansionModule,
   ],
-  providers: [AuthenticateService],
+  providers: [AuthenticateService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

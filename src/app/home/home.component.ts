@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {GetsessionService} from './getsession.service';
+import {CookieService} from 'ngx-cookie-service';
 
 export interface Question {
   question: string;
@@ -16,8 +16,10 @@ export interface Question {
 })
 
 export class HomeComponent implements OnInit {
+  welcome = 'Account';
+
   constructor(private router: Router,
-              private getsession: GetsessionService) {
+              private cookie: CookieService) {
   }
 
   questions: Question[] = [

@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
 import {AuthenticateService} from './authenticate.service';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
+import {AppComponent} from '../app.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,10 +26,11 @@ export class LoginComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   constructor(
+    private zone: NgZone,
     private auth: AuthenticateService,
     private formBuilder: FormBuilder,
     private router: Router,
-    // private cookie: CookieService,
+    private cookie: CookieService,
   ) {
   }
 
@@ -54,9 +56,12 @@ export class LoginComponent implements OnInit {
     }).subscribe(data => {
       this.msg = data['msg'];
       if (data['status']) {
-        this.router.navigate(['/home']);
-        console.log('sess ' + data['sessionID']);
-        // this.cookie.set('sessionID', data['sessionID']);
+        this.cookie.set('sessionID', data['sessionID']);
+        this.zone.run(() => this.router.navigate(['/'])
+        );
+
+
+        // console.log('sess ' + data['sessionID']);
       }
     });
   }
