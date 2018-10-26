@@ -43,6 +43,14 @@ export class SessionService {
   }
 
   getQuestions() {
-    return this.http.get('http://localhost:3000/getQuestion', {responseType: 'json'});
+    return this.http.get('http://localhost:3000/getQuestions', {responseType: 'json'});
+  }
+
+  getTaggedQuestions(tag) {
+    return this.http.post('http://localhost:3000/getQuestions', {tag: tag}, {responseType: 'json'});
+  }
+
+  getQuestion(id: string) {
+    return this.http.post('http://localhost:3000/getQuestion', {id: id}, {responseType: 'json'});
   }
 }

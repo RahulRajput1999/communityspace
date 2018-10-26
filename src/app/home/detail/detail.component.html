@@ -3,18 +3,14 @@
   <div class="qusetion-head">
     <div class="row">
       <div class="col-lg-10 col-md-10 col-sm-12">
-        <h3>This is question header...</h3>
-        <p>This is detailed descriptoin of the question. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <h3>{{question.question}}</h3>
+        <p>T{{question.description}}</p>
         <mat-chip-list>
-          <mat-chip (click)="topics()">Topic</mat-chip>
-          <mat-chip (click)="topics()">Topic</mat-chip>
-          <mat-chip (click)="topics()">Topic</mat-chip>
+          <mat-chip *ngFor="let t of question.topic_ids">{{t}}</mat-chip>
         </mat-chip-list>
       </div>
       <div class="col-lg-2 col-md-2 col sm-12 right_border">
-        <p>Date and other info about the qusetion</p>
+        <p>{{question.date | date}}</p>
         <button mat-button>
           <mat-icon>thumb_up</mat-icon>
         </button>

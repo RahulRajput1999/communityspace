@@ -19,43 +19,6 @@ export class HomeComponent implements OnInit {
 
   public questinoArr;
 
-
-  questions: Question[] = [
-    {
-      question: 'This is question 1?',
-      answer: 'This is answer 1 of question one.' +
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      date: 'Posted on 3rd September 2018',
-      tags: ['Tag 1', 'Tag 2']
-    },
-    {
-      question: 'This is question 2?',
-      answer: 'This is answer of question two.' +
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      date: 'Posted on 13rd September 2018',
-      tags: ['Tag 2', 'Tag 4']
-    },
-    {
-      question: 'This is question 3?',
-      answer: 'This is answer 1 of question 3.' +
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      date: 'Posted on 3rd January 2017',
-      tags: ['Tag 1', 'Tag 2']
-    },
-    {
-      question: 'This is question 1?',
-      answer: 'This is answer 1 of question one.',
-      date: 'Posted on 3rd September 2018',
-      tags: ['Tag 1', 'Tag 2']
-    },
-    {
-      question: 'This is question 1?',
-      answer: 'This is answer 1 of question one.',
-      date: 'Posted on 3rd September 2018',
-      tags: ['Tag 1', 'Tag 2']
-    },
-  ];
-
   constructor(private router: Router,
               private QSvc: SessionService) {
   }
@@ -70,15 +33,15 @@ export class HomeComponent implements OnInit {
     this.questinoArr = data['questions'];
   }
 
-  topics() {
-    const promice = this.router.navigate(['topics']);
+  topics(tag) {
+    const promice = this.router.navigate(['topics', tag]);
   }
 
   ask() {
     const promice = this.router.navigate(['/home/ask']);
   }
 
-  redirect() {
-    const promise = this.router.navigate(['/home/detail']);
+  redirect(id) {
+    const promise = this.router.navigate(['/home/detail', id]);
   }
 }

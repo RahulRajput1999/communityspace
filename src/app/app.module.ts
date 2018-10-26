@@ -43,11 +43,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: '*', component: HomeComponent},
-  {path: 'home/detail', component: DetailComponent},
+  {path: 'home/detail/:id', component: DetailComponent},
   {path: 'home/ask', component: AskComponent},
   {path: 'search', component: SearchComponent},
   {path: 'communities', component: CommunitiesComponent},
-  {path: 'topics', component: TopicsComponent},
+  {path: 'topics/:tag', component: TopicsComponent},
   {path: 'profile', component: ProfileComponent},
 ];
 
