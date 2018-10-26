@@ -33,6 +33,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {AuthenticateService} from './login/authenticate.service';
 import {HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'search', component: SearchComponent},
   {path: 'communities', component: CommunitiesComponent},
   {path: 'topics', component: TopicsComponent},
+  {path: 'profile', component: ProfileComponent},
 ];
 
 @NgModule({
@@ -61,7 +63,8 @@ const routes: Routes = [
     AskComponent,
     SearchComponent,
     CommunitiesComponent,
-    TopicsComponent
+    TopicsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material';
+import {SessionService} from '../session.service';
+import {CookieService} from 'ngx-cookie-service';
+import {Router} from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -40,12 +43,28 @@ export class ContactComponent implements OnInit {
     Validators.required
   ]);
 
-  constructor() {
+  sessionID: String;
+
+  constructor(private session: SessionService,
+              private cookie: CookieService,
+              private router: Router) {
+    if (this.cookie.check('sessionID')) {
+      this.sessionID = this.cookie.get('sessionID');
+      console.log('cookie found');
+    } else {
+      console.log('not logged in');
+      this.router.navigate(['/login']);
+    }
   }
 
   matcher = new MyErrorStateMatcher();
 
   ngOnInit() {
+
+    this.session.getUser().subscribe(data => {
+      this.nameFormControl.setValue(data['user'].username);
+      this.emailFormControl.setValue(data['user'].email);
+    });
   }
 
 }

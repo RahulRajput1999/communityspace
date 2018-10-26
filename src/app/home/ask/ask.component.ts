@@ -3,6 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
 import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
+import {QuestionService} from '../question.service';
+import {forEach} from '@angular/router/src/utils/collection';
+import {conditionallyCreateMapObjectLiteral} from '@angular/compiler/src/render3/view/util';
 
 export interface Topic {
   name: string;
@@ -16,7 +20,6 @@ export interface Topic {
 export class AskComponent implements OnInit {
 
   isLinear = true;
-  firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   visible = true;
   selectable = true;
@@ -24,16 +27,29 @@ export class AskComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   topics: Topic[] = [];
+  sessionID: String;
 
-  constructor(private router: Router, private builder: FormBuilder) {
+  constructor(private router: Router,
+              private builder: FormBuilder,
+              private cookie: CookieService,
+              private askSvc: QuestionService) {
+    if (this.cookie.check('sessionID')) {
+      this.sessionID = this.cookie.get('sessionID');
+      console.log('cookie found');
+    } else {
+      console.log('not logged in');
+      this.router.navigate(['/login']);
+    }
+  }
+
+  get f() {
+    return this.secondFormGroup.controls;
   }
 
   ngOnInit() {
-    this.firstFormGroup = this.builder.group({
-      firstCtrl: ['', Validators.required]
-    });
     this.secondFormGroup = this.builder.group({
-      secondCtrl: ['', Validators.required]
+      questionCtrl: ['', Validators.required],
+      discriptionCtrl: ['', Validators.required]
     });
   }
 
@@ -64,4 +80,9 @@ export class AskComponent implements OnInit {
     const promise = this.router.navigate(['/home']);
   }
 
+  onSubmit() {
+    const question = this.f.questionCtrl.value;
+    const discription = this.f.discriptionCtrl.value;
+    this.askSvc.postQuestion({sessionID: this.sessionID, question: question, discription: discription, tags: this.topics});
+  }
 }

@@ -37,21 +37,21 @@
     </div>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit()">
       <ng-template matStepLabel>Ask Your Question</ng-template>
       <mat-form-field class="askq">
-        <input matInput placeholder="Question" formControlName="secondCtrl" required>
+        <input matInput placeholder="Question" formControlName="questionCtrl">
       </mat-form-field>
       <br/>
       <mat-form-field class="askq">
-        <textarea matInput placeholder="Detailed Discription" required></textarea>
+        <textarea matInput placeholder="Detailed Discription" formControlName="discriptionCtrl"></textarea>
       </mat-form-field>
       <br/>
       <mat-form-field class="askq">
         <mat-chip-list #chipList>
-          <mat-chip *ngFor="let fruit of topics" [selectable]="selectable"
-                    [removable]="removable" (removed)="remove(fruit)">
-            {{fruit.name}}
+          <mat-chip *ngFor="let topic of topics" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(topic)">
+            {{topic.name}}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
           <input placeholder="Tags"
@@ -63,7 +63,7 @@
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button type="submit" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>

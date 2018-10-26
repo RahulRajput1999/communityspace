@@ -2,7 +2,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark color_primary">
   <a class="navbar-brand" routerLink="/home" routerLinkActive="active">Community Space</a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb"
+          aria-expanded="true">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -23,8 +24,12 @@
           {{ welcome }}
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="/login" routerLinkActive="active">Log-In</a>
-          <a class="dropdown-item" routerLink="/signup" routerLinkActive="active">Sign-Up</a>
+          <a *ngIf="!login; else logout" class="dropdown-item" routerLink="/login" routerLinkActive="active">Log-In</a>
+          <ng-template #logout>
+            <a class="dropdown-item customLink" (click)="logoff()">Log-out</a>
+            <a class="dropdown-item" routerLink="/profile" routerLinkActive="active">Profile</a>
+          </ng-template>
+          <a *ngIf="!login" class="dropdown-item" routerLink="/signup" routerLinkActive="active">Sign-Up</a>
         </div>
       </li>
     </ul>

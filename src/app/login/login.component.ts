@@ -4,7 +4,7 @@ import {ErrorStateMatcher} from '@angular/material';
 import {AuthenticateService} from './authenticate.service';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
-import {AppComponent} from '../app.component';
+import {UpdateAppService} from '../update-app.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private cookie: CookieService,
+    private  updateSvc: UpdateAppService
   ) {
   }
 
@@ -57,10 +58,8 @@ export class LoginComponent implements OnInit {
       this.msg = data['msg'];
       if (data['status']) {
         this.cookie.set('sessionID', data['sessionID']);
-        this.zone.run(() => this.router.navigate(['/'])
-        );
-
-
+        this.updateSvc.emit();
+        this.router.navigate(['/']);
         // console.log('sess ' + data['sessionID']);
       }
     });

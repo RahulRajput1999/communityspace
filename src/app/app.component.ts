@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from './session.service';
 import {CookieService} from 'ngx-cookie-service';
+import {UpdateAppService} from './update-app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,23 +10,35 @@ import {CookieService} from 'ngx-cookie-service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public welcome = 'Account';
+  welcome = 'Account';
+  login: Boolean = false;
 
   constructor(private  session: SessionService,
-              private cookie: CookieService) {
+              private router: Router,
+              private cookie: CookieService,
+              private updateSvc: UpdateAppService) {
+    this.updateSvc.listen().subscribe(data => {
+      this.ngOnInit();
+    });
+
   }
 
   ngOnInit() {
     this.session.getSession({sessionID: this.cookie.get('sessionID')}).subscribe(data => {
       if (data['status']) {
-        console.log(data['session']);
         this.welcome = data['session'].userName;
+        this.login = true;
       } else {
         this.welcome = 'Account';
+        this.login = false;
       }
-      console.log('Whole Session' + data['status']);
-      console.log(data['session']);
-      console.log(this.welcome);
     });
+  }
+
+  logoff() {
+    this.session.destroySession({sessionID: this.cookie.get('sessionID')}).subscribe(data => {
+    });
+    this.router.navigate(['/']);
+    this.ngOnInit();
   }
 }
