@@ -7,6 +7,13 @@ interface SessionID {
 
 }
 
+interface Question {
+  sessionID: String;
+  question: String;
+  description: String;
+  tags: any;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +36,13 @@ export class SessionService {
   getUser() {
     const sessionID = {sessionID: this.cookie.get('sessionID')};
     return this.http.post('http://localhost:3000/getUser', sessionID, {responseType: 'json'});
+  }
+
+  postQuestion(question: Question) {
+    return this.http.post('http://localhost:3000/postQuestion', question, {responseType: 'json'});
+  }
+
+  getQuestions() {
+    return this.http.get('http://localhost:3000/getQuestion', {responseType: 'json'});
   }
 }

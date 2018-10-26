@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {SessionService} from '../session.service';
 
 export interface Question {
   question: string;
@@ -16,8 +17,8 @@ export interface Question {
 
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) {
-  }
+  public questinoArr;
+
 
   questions: Question[] = [
     {
@@ -55,7 +56,18 @@ export class HomeComponent implements OnInit {
     },
   ];
 
+  constructor(private router: Router,
+              private QSvc: SessionService) {
+  }
+
   ngOnInit() {
+    this.QSvc.getQuestions().subscribe(data => {
+      this.populateQuestion(data);
+    });
+  }
+
+  populateQuestion(data) {
+    this.questinoArr = data['questions'];
   }
 
   topics() {

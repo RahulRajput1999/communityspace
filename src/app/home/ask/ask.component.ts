@@ -4,9 +4,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
 import {Router} from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
-import {QuestionService} from '../question.service';
-import {forEach} from '@angular/router/src/utils/collection';
-import {conditionallyCreateMapObjectLiteral} from '@angular/compiler/src/render3/view/util';
+import {SessionService} from '../../session.service';
 
 export interface Topic {
   name: string;
@@ -21,7 +19,6 @@ export class AskComponent implements OnInit {
 
   isLinear = true;
   secondFormGroup: FormGroup;
-  visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
@@ -32,7 +29,7 @@ export class AskComponent implements OnInit {
   constructor(private router: Router,
               private builder: FormBuilder,
               private cookie: CookieService,
-              private askSvc: QuestionService) {
+              private askSvc: SessionService) {
     if (this.cookie.check('sessionID')) {
       this.sessionID = this.cookie.get('sessionID');
       console.log('cookie found');
@@ -83,6 +80,13 @@ export class AskComponent implements OnInit {
   onSubmit() {
     const question = this.f.questionCtrl.value;
     const discription = this.f.discriptionCtrl.value;
-    this.askSvc.postQuestion({sessionID: this.sessionID, question: question, discription: discription, tags: this.topics});
+    this.askSvc.postQuestion({
+      sessionID: this.sessionID,
+      question: question,
+      description: discription,
+      tags: this.topics
+    }).subscribe(data => {
+      console.log(data);
+    });
   }
 }
